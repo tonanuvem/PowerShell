@@ -20,12 +20,16 @@ Write-Output "Started By: $env:username"
 Write-Warning "This script will potentially saturate CPU utilization!"
 $Prompt = Read-Host "Are you sure you want to proceed? (Y/N)"
 
+if ($Cores -eq '')
+{
+	Write-Output "Setting Core Count. $Cores"
+	$Cores = 4
+}
 $Cores = 4
-
 if ($Prompt -eq 'Y')
 {
 	Write-Warning "To cancel execution of all jobs, close the PowerShell Host Window."
-	Write-Output "Hyper Core Count oi: $Cores"
+	Write-Output "Hyper Core Count oi2: $Cores"
 
 foreach ($loopnumber in 1..$Cores){
     Start-Job -ScriptBlock{
