@@ -22,10 +22,10 @@ $Prompt = Read-Host "Are you sure you want to proceed? (Y/N)"
 
 if ($Cores -eq '')
 {
-	Write-Output "Setting Core Count. $Cores"
+	Write-Output "Setting Core Count. From $Cores to 4"
 	$Cores = 4
 }
-$Cores = 4
+
 if ($Prompt -eq 'Y')
 {
 	Write-Warning "To cancel execution of all jobs, close the PowerShell Host Window."
