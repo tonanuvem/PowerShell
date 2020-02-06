@@ -25,9 +25,9 @@ $Cores = 4
 if ($Prompt -eq 'Y')
 {
 	Write-Warning "To cancel execution of all jobs, close the PowerShell Host Window."
-	Write-Output "Hyper Core Count: $NumHyperCores"
+	Write-Output "Hyper Core Count: $Cores"
 
-foreach ($loopnumber in 1..$NumHyperCores){
+foreach ($loopnumber in 1..$Cores){
     Start-Job -ScriptBlock{
     $result = 1
         foreach ($number in 1..2147483647){
