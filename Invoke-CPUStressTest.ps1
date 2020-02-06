@@ -29,7 +29,7 @@ if ($Cores -eq '')
 if ($Prompt -eq 'Y')
 {
 	Write-Warning "To cancel execution of all jobs, close the PowerShell Host Window."
-	Write-Output "Hyper Core Count oi2: $Cores"
+	Write-Output "Hyper Core Count : $Cores"
 
 foreach ($loopnumber in 1..$Cores){
     Start-Job -ScriptBlock{
