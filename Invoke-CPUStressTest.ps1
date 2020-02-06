@@ -20,6 +20,9 @@ Write-Output "Started By: $env:username"
 Write-Warning "This script will potentially saturate CPU utilization!"
 $Prompt = Read-Host "Are you sure you want to proceed? (Y/N)"
 
+if ($Cores -eq '') {
+	$Cores = 4
+}
 if ($Prompt -eq 'Y')
 {
 	Write-Warning "To cancel execution of all jobs, close the PowerShell Host Window."
