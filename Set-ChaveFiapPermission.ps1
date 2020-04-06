@@ -19,7 +19,7 @@ $acl.SetOwner($object)
 $acl | Set-Acl $KEY
 
 # Remove All Users, except for Owner ::
-#Cmd /c Icacls %Key% /c /t /Remove Administrator "Authenticated Users" BUILTIN\Administrators BUILTIN Everyone System Users
+Cmd /c Icacls $KEY /c /t /Remove Administrator "Authenticated Users" BUILTIN\Administrators BUILTIN Everyone System Users
 
 # Verify ::
-Cmd /c Icacls %Key%
+Cmd /c Icacls $KEY
