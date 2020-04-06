@@ -19,7 +19,35 @@ $acl.SetOwner($object)
 $acl | Set-Acl $KEY
 
 # Remove All Users, except for Owner ::
-Cmd /c Icacls $KEY /c /t /Remove Administrator "Authenticated Users" BUILTIN\Administrators BUILTIN Everyone System Users
+#Cmd /c Icacls $KEY /c /t /Remove Administrator "Authenticated Users" BUILTIN\Administrators BUILTIN Everyone System Users
+$acl = Get-Acl $KEY
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("Administrator","FullControl","Allow")
+$acl.RemoveAccessRule($AccessRule)
+$acl | Set-Acl $KEY
+$acl = Get-Acl $KEY
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("Authenticated Users","FullControl","Allow")
+$acl.RemoveAccessRule($AccessRule)
+$acl | Set-Acl $KEY
+$acl = Get-Acl $KEY
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("BUILTIN\Administrators","FullControl","Allow")
+$acl.RemoveAccessRule($AccessRule)
+$acl | Set-Acl $KEY
+$acl = Get-Acl $KEY
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("BUILTIN","FullControl","Allow")
+$acl.RemoveAccessRule($AccessRule)
+$acl | Set-Acl $KEY
+$acl = Get-Acl $KEY
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("Everyone","FullControl","Allow")
+$acl.RemoveAccessRule($AccessRule)
+$acl | Set-Acl $KEY
+$acl = Get-Acl $KEY
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("System","FullControl","Allow")
+$acl.RemoveAccessRule($AccessRule)
+$acl | Set-Acl $KEY
+$acl = Get-Acl $KEY
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("Users","FullControl","Allow")
+$acl.RemoveAccessRule($AccessRule)
+$acl | Set-Acl $KEY
 
 # Verify ::
 Cmd /c Icacls $KEY
