@@ -1,4 +1,5 @@
 # https://blog.netwrix.com/2018/04/18/how-to-manage-file-system-acls-with-powershell-scripts/
+# https://superuser.com/questions/1296024/windows-ssh-permissions-for-private-key-are-too-open
 
 # Set Variable ::
 #Set Key="chave-fiap.pem"
