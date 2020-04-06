@@ -2,7 +2,7 @@
 
 # Set Variable ::
 #Set Key="chave-fiap.pem"
-$KEY = "chave-fiap.pem"
+$KEY = ".\chave-fiap.pem"
 
 # Remove Inheritance ::
 #Cmd /c Icacls %Key% /c /t /Inheritance:d
