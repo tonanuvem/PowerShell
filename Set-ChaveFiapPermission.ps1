@@ -14,7 +14,7 @@ $acl | Set-Acl $KEY
 # Set Ownership to Owner ::
 #Cmd /c Icacls %Key% /c /t /Grant %UserName%:F
 $acl = Get-Acl $KEY
-$object = New-Object System.Security.Principal.Ntaccount("$env:username)
+$object = New-Object System.Security.Principal.Ntaccount("$env:username")
 $acl.SetOwner($object)
 $acl | Set-Acl $KEY
 
