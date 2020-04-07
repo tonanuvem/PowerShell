@@ -4,11 +4,9 @@
 # https://superuser.com/questions/1524970/removing-users-via-powershell-with-multiple-domains
 
 # Set Variable ::
-#$KEY = ".\chave-fiap.pem"
-$KEY = ".\tricare.pdf"
+$KEY = ".\chave-fiap.pem"
 
 Write-Output "============= Permissoes iniciais ============="
-
 Get-Acl $KEY | Format-List
 
 # Remove Inheritance ::
@@ -23,11 +21,9 @@ $object = New-Object System.Security.Principal.Ntaccount("$env:username")
 $acl.SetOwner($object)
 $acl | Set-Acl $KEY
 
-Write-Output "============= Permissoes sem Heranca e ajustado o Ownership ============="
-Get-Acl $KEY | Format-List
-
 # Remove All Users, except for Owner ::
 <#
+#OPCAO 1:
 $acl = Get-Acl $KEY
 foreach($user in $acl.Access.IdentityReference.Value )
 {
@@ -38,7 +34,6 @@ foreach($user in $acl.Access.IdentityReference.Value )
 }
 #>
 #OPCAO 2:
-Write-Output "============= OPCAO 2 ============="
 # get explicit permissions
 $acl = Get-Acl $KEY
 $acl.Access |
@@ -49,11 +44,6 @@ $acl.Access |
 $acl | Set-Acl $KEY 
 #
 
-Write-Output "============= Permissoes removidas ============="
-# Verify ::
-# Cmd /c Icacls $KEY
-Get-Acl $KEY | Format-List
-
 # Deixar a permissão somente para o proprio usuario
 $acl = Get-Acl $KEY
 $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("$env:username","FullControl","Allow")
@@ -61,5 +51,5 @@ $acl.AddAccessRule($AccessRule)
 $acl | Set-Acl $KEY
 
 
-Write-Output "============= Permissoes somente para o proprio usuario  ============="
+Write-Output "============= Permissoes configuradas  ============="
 Get-Acl $KEY | Format-List
