@@ -6,7 +6,7 @@
 # Set Variable ::
 #Set Key="chave-fiap.pem"
 #$KEY = ".\chave-fiap.pem"
-$KEY = ".\sounds.zip"
+$KEY = ".\dinamica.xlsx.zip"
 
 Write-Output "============= Permissoes iniciais ============="
 # Verify ::
