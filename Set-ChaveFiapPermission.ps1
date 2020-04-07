@@ -8,7 +8,7 @@
 #$KEY = ".\chave-fiap.pem"
 $KEY = ".\sounds.zip"
 
-Write-Output "============= Permissões iniciais ============="
+Write-Output "============= Permissoes iniciais ============="
 # Verify ::
 # Cmd /c Icacls $KEY
 Get-Acl $KEY | Format-List
@@ -27,7 +27,7 @@ $object = New-Object System.Security.Principal.Ntaccount("$env:username")
 $acl.SetOwner($object)
 $acl | Set-Acl $KEY
 
-Write-Output "============= Permissões sem Herança e ajustado o Ownership ============="
+Write-Output "============= Permissoes sem Herança e ajustado o Ownership ============="
 # Verify ::
 # Cmd /c Icacls $KEY
 Get-Acl $KEY | Format-List
@@ -43,7 +43,7 @@ foreach($user in $acl.Access.IdentityReference.Value )
   $acl | Set-Acl $KEY
 }
 
-Write-Output "============= Permissões removidas ============="
+Write-Output "============= Permissoes removidas ============="
 # Verify ::
 # Cmd /c Icacls $KEY
 Get-Acl $KEY | Format-List
@@ -55,7 +55,7 @@ $acl.AddAccessRule($AccessRule)
 $acl | Set-Acl $KEY
 
 
-Write-Output "============= Permissões somente para o proprio usuario  ============="
+Write-Output "============= Permissoes somente para o proprio usuario  ============="
 # Verify ::
 # Cmd /c Icacls $KEY
 Get-Acl $KEY | Format-List
