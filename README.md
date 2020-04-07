@@ -3,9 +3,7 @@ PowerShell
 
 PowerShell Scripts:
 
-Desabilitar cache no WebClient
-
-> webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+Desabilitar cache no WebClient C#: webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
 
 Uso:
 
