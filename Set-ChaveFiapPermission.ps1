@@ -49,7 +49,7 @@ Write-Output "============= Permissoes removidas ============="
 Get-Acl $KEY | Format-List
 
 # Deixar a permissão somente para o proprio usuario
-acl = Get-Acl $KEY
+$acl = Get-Acl $KEY
 $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("$env:username","FullControl","Allow")
 $acl.AddAccessRule($AccessRule)
 $acl | Set-Acl $KEY
