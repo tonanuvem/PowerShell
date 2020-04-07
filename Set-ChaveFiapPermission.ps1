@@ -39,7 +39,7 @@ foreach($user in $acl.Access.IdentityReference.Value )
 {
   Write-Host "  ==  Removendo $user ==  " -ForegroundColor Yellow
   $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($user,"FullControl","Allow")
-  $acl.RemoveAccessRule($AccessRule)
+  #$acl.RemoveAccessRule($AccessRule)
   $acl | Set-Acl $KEY
 }
 
