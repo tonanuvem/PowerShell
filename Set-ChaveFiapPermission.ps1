@@ -33,7 +33,7 @@ Write-Output "============= Permissoes sem Heranca e ajustado o Ownership ======
 Get-Acl $KEY | Format-List
 
 # Remove All Users, except for Owner ::
-#Cmd /c Icacls $KEY /c /t /Remove Administrator "Authenticated Users" BUILTIN\Administrators BUILTIN Everyone System Users
+<#
 $acl = Get-Acl $KEY
 foreach($user in $acl.Access.IdentityReference.Value )
 {
@@ -42,6 +42,17 @@ foreach($user in $acl.Access.IdentityReference.Value )
   #$acl.RemoveAccessRule($AccessRule)
   $acl | Set-Acl $KEY
 }
+#>
+#OPCAO 2:
+# get explicit permissions
+$acl = Get-Acl $KEY
+$acl.Access |
+  Where-Object { $_.isInherited -eq $false } |
+  # ...and remove them
+  ForEach-Object { $acl.RemoveAccessRuleAll($_) } 
+# set new permissions
+$acl | Set-Acl $KEY 
+#
 
 Write-Output "============= Permissoes removidas ============="
 # Verify ::
