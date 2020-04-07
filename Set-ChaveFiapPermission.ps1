@@ -6,7 +6,7 @@
 # Set Variable ::
 #Set Key="chave-fiap.pem"
 #$KEY = ".\chave-fiap.pem"
-$KEY = ".\apresentacao-trabalhos.xlsx"
+$KEY = ".\tricare.pdf"
 
 Write-Output "============= Permissoes iniciais ============="
 # Verify ::
@@ -27,7 +27,7 @@ $object = New-Object System.Security.Principal.Ntaccount("$env:username")
 $acl.SetOwner($object)
 $acl | Set-Acl $KEY
 
-Write-Output "============= Permissoes sem Herança e ajustado o Ownership ============="
+Write-Output "============= Permissoes sem Heranca e ajustado o Ownership ============="
 # Verify ::
 # Cmd /c Icacls $KEY
 Get-Acl $KEY | Format-List
