@@ -4,32 +4,26 @@
 # https://superuser.com/questions/1524970/removing-users-via-powershell-with-multiple-domains
 
 # Set Variable ::
-#Set Key="chave-fiap.pem"
 #$KEY = ".\chave-fiap.pem"
 $KEY = ".\tricare.pdf"
 
 Write-Output "============= Permissoes iniciais ============="
-# Verify ::
-# Cmd /c Icacls $KEY
+
 Get-Acl $KEY | Format-List
 
 # Remove Inheritance ::
-#Cmd /c Icacls %Key% /c /t /Inheritance:d
 $acl = Get-Acl $KEY
 $acl.SetAccessRuleProtection($true,$false)
 $acl | Set-Acl $KEY
 
 
 # Set Ownership to Owner ::
-#Cmd /c Icacls %Key% /c /t /Grant %UserName%:F
 $acl = Get-Acl $KEY
 $object = New-Object System.Security.Principal.Ntaccount("$env:username")
 $acl.SetOwner($object)
 $acl | Set-Acl $KEY
 
 Write-Output "============= Permissoes sem Heranca e ajustado o Ownership ============="
-# Verify ::
-# Cmd /c Icacls $KEY
 Get-Acl $KEY | Format-List
 
 # Remove All Users, except for Owner ::
@@ -44,6 +38,7 @@ foreach($user in $acl.Access.IdentityReference.Value )
 }
 #>
 #OPCAO 2:
+Write-Output "============= OPCAO 2 ============="
 # get explicit permissions
 $acl = Get-Acl $KEY
 $acl.Access |
@@ -67,6 +62,4 @@ $acl | Set-Acl $KEY
 
 
 Write-Output "============= Permissoes somente para o proprio usuario  ============="
-# Verify ::
-# Cmd /c Icacls $KEY
 Get-Acl $KEY | Format-List
